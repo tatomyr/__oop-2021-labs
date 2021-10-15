@@ -94,7 +94,7 @@ GAME_CHARACTER.move(Crawling())
 
 ## UML-діаграма 
 
-![builder_diagram](./images/strategy_example.jpg)
+![builder_diagram](../images/strategy_example.jpg)
 
 ## Висновок
 
