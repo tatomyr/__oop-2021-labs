@@ -95,7 +95,7 @@ print(Car1.parts)
 
 ## UML-діаграма 
 
-![builder_diagram](./images/builder_example.jpg)
+![builder_diagram](../images/builder_example.jpg)
 
 ## Висновок
 
