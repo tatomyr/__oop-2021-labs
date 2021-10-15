@@ -173,7 +173,7 @@ print(f"{TOTALCUBES} cubes have been manufactured")
 
 ## UML-діаграма 
 
-![builder_diagram](./images/adapter_example.jpg)
+![builder_diagram](../images/adapter_example.jpg)
 
 ## Висновок
 
