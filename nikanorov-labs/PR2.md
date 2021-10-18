@@ -122,7 +122,7 @@ if __name__ == "__main__":
 
 ## UML-діаграма 
 
-![Adapter](.../Adapter.jpg)
+![Adapter](Adapter.png)
 
 ## Висновок
 
