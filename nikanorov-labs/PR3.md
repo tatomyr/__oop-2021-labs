@@ -1,0 +1,166 @@
+# Шаблони проектування. Поведінкові патерни
+
+## Мета
+
+Освоїти роботу з поведінковими шаблонами в Python3.
+
+## Поведінкові шаблони
+
+Шаблони поведінки (англ. behavioral patterns) — шаблони проєктування, що пов'язані з алгоритмами та розподілом обов'язків поміж об'єктів. Мова в них йде не тільки 
+про самі об'єкти та класи, але й про типові способи їхньої взаємодії. Шаблони поведінки характеризують складний потік керування, котрий досить важко прослідкувати під 
+час виконання програми. Увага акцентована не на потоці керування, а на зв'язках між об'єктами.
+
+## Шаблон Command
+
+Command - Інкапсулює запит у формі об'єкта, дозволяючи тим самим задавати параметри клієнтів для обробки відповідних запитів, ставити запити 
+у чергу або протоколювати їх, а також підтримувати скасовування операцій.
+
+## Приклад коду
+
+```python
+from abc import ABC, abstractmethod
+from typing import List
+
+
+class ICommand(ABC):
+    """Інтерфейсний клас для виконуваних операцій"""
+    @abstractmethod
+    def execute(self) -> None:
+        ...
+
+
+class ChiefAssistant:
+    def prepare_pizza_dough(self):
+        print("Асистент готує тісто для піци")
+
+    def prepare_topping(self):
+        print("Асистент нарізає начинку для піци")
+
+
+class Stove:
+    def prepare_stove(self):
+        print("Піч розігрівається")
+
+    def cooking_pizza(self):
+        print("Піца готується в печі")
+
+
+class ChiefCooker:
+    def make_pizza_base(self):
+        print("Шеф розгортає основу для піци")
+
+    def add_topping_to_pizza(self):
+        print("Шеф додає начинку на піцу")
+
+
+class PrepareStoveCommand(ICommand):
+    """Клас команди для розігріву печі"""
+    def __init__(self, executor: Stove):
+        self.__executor = executor
+
+    def execute(self) -> None:
+        self.__executor.prepare_stove()
+
+
+class PrepareDoughCommand(ICommand):
+    """Класс для підготовки тіста для піцци"""
+    def __init__(self, executor: ChiefAssistant):
+        self.__executor = executor
+
+    def execute(self) -> None:
+        self.__executor.prepare_pizza_dough()
+
+
+class PrepareToppingCommand(ICommand):
+    """Клас команди для нарізки начинки піци"""
+    def __init__(self, executor: ChiefAssistant):
+        self.__executor = executor
+
+    def execute(self) -> None:
+        self.__executor.prepare_topping()
+
+
+class CookingPizzaCommand(ICommand):
+    """Клас команди для приготування піци в печі"""
+    def __init__(self, executor: Stove):
+        self.__executor = executor
+
+    def execute(self) -> None:
+        self.__executor.cooking_pizza()
+
+
+class MakePizzaBaseCommand(ICommand):
+    """Клас команди для приготування основи для піци"""
+    def __init__(self, executor: ChiefCooker):
+        self.__executor = executor
+
+    def execute(self) -> None:
+        self.__executor.make_pizza_base()
+
+
+class AddToppingCommand(ICommand):
+    """Клас команди для додавання начинки на піцу"""
+
+    def __init__(self, executor: ChiefCooker):
+        self.__executor = executor
+
+    def execute(self) -> None:
+        self.__executor.add_topping_to_pizza()
+
+
+class Pizzeria:
+    """Клас агрегації всіх команд для приготування піци пиццы"""
+    def __init__(self):
+        self.history: List[ICommand] = []
+
+    def addCommand(self, command: ICommand) -> None:
+        self.history.append(command)
+
+    def cook(self) -> None:
+        if not self.history:
+            print("Не задана черговість виконання"
+                  "Команд приготування піци")
+        else:
+            for executor in self.history:
+                executor.execute()
+        self.history.clear()
+
+
+if __name__ == "__main__":
+    chief = ChiefCooker()
+    assistant = ChiefAssistant()
+    stove = Stove()
+    pizzeria = Pizzeria()
+    # формируем последовательность команд для приготовления пиццы
+    pizzeria.addCommand(PrepareDoughCommand(assistant))
+    pizzeria.addCommand(MakePizzaBaseCommand(chief))
+    pizzeria.addCommand(PrepareStoveCommand(stove))
+    pizzeria.addCommand(PrepareToppingCommand(assistant))
+    pizzeria.addCommand(AddToppingCommand(chief))
+    pizzeria.addCommand(CookingPizzaCommand(stove))
+    # запускаем процесс приготовления пиццы
+    pizzeria.cook()
+```
+
+## Вивід
+>Асистент готує тісто для піци
+>Шеф розгортає основу для піци
+>Піч розігрівається
+>Асистент нарізає начинку для піци
+>Шеф додає начинку на піцу
+>Піца готується в печі
+
+## UML-діаграма 
+![Command](../Command.png)
+
+## Висновок
+
+Команда (Command) – дозволяє інкапсулювати всю інформацію, необхідну для виконання певних операцій, які можуть 
+бути виконані пізніше, використавши об’єкт команди;
+
+#### Переваги
+- Доволі легко організувати операції відміни, повторення а також відкладений запуск
+- Можно збирати складні команди з простих
+#### Недоліки
+- Вводиться велика кількість допоміжних класів, що створює проблеми орієнтації в коді
+
