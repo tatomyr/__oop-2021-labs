@@ -107,3 +107,9 @@ print(Car1.parts)
 #### Недоліки
 * Ускладнює код програми за рахунок додаткових класів.
 * Клієнт буде прив’язаний до конкретних класів будівельників, тому що в інтерфейсі будівельника може не бути методу отримання результату.
+
+## Список використаної літератури
+
+* [Python Design Patterns] https://sbcode.net/python;
+* [Refactoring Guru] https://refactoring.guru/uk/design-patterns/python;
+* [Metanit.com] https://metanit.com
