@@ -62,7 +62,7 @@ if __name__ == "__main__":
 True
 
 #UML - діаграма
-![Singleton](Singleton.png)
+![Singleton](../Singleton.png)
 
 ## Висновки
 
