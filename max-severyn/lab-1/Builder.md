@@ -110,6 +110,6 @@ print(Car1.parts)
 
 ## Список використаної літератури
 
-* [Python Design Patterns] https://sbcode.net/python
-* [Refactoring Guru] https://refactoring.guru/uk/design-patterns/python
-* [Metanit.com] https://metanit.com
+* [Python Design Patterns](https://sbcode.net/python)
+* [Refactoring Guru](https://refactoring.guru/uk/design-patterns/python)
+* [Metanit.com](https://metanit.com)
