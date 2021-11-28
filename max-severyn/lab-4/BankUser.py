@@ -1,11 +1,22 @@
-from User import User
 
-
-class BankUser(User):
+class BankUser():
     def __init__(self, name, second_name, age, gender, login, password):
-        super().__init__(name, second_name, age, gender, login, password)
-        BankUser.exist = False
+        self.name = name
+        self.second_name = second_name
+        self.age = age
+        self.gender = gender
+        self.login = login
+        self.password = password
         self.balance = 0
+        BankUser.exist = False
+
+    def show_details(self):
+        print("Personal Details:")
+        print("")
+        print("Name: ", self.name)
+        print("Second Name:", self.second_name)
+        print("Age: ", self.age)
+        print("Gender: ", self.gender)
 
     def deposit(self, amount):
         self.amount = amount

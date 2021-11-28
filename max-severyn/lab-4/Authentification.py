@@ -1,8 +1,8 @@
-from CreateUser import CreateUser
-from DeleteUser import DeleteUser
+from BankUser import BankUser
 from MenuManagement import MenuManagement
 from FileManagement import *
 from UserDB import UserDB
+from User import User
 
 
 class LoginPass():
@@ -26,10 +26,10 @@ class AdminAuth(LoginPass):
             MenuManagement.admin_menu_info()
             state = input()
             if state == "1":
-                CreateUser.data_input()
+                User.create_user()
                 UserDB.data_to_database()
             elif state == "2":
-                DeleteUser.del_user()
+                User.del_user()
             elif state == "3":
                 FileManagement.show_info()
             elif state == "4":
