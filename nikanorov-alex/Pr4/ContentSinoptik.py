@@ -11,35 +11,35 @@ class ContentSinoptik(WeatherFather):
         weatherFather3 = weatherList[2]
 
         for i in weatherFather:
-            w1 = i
+            weatherToday = i
         for i in weatherFather2:
-            w2 = i
+            weatherDayTime= i
         for i in weatherFather3:
-            w3 = i
+            weatherDayNumbers = i
 
         
         print()
         print("------------------------------------------------------")
         print("\t\t\t\t\t\t\t\t\t\tПогода з сайту Sinoptik " + location_name)
-        print("День:" + w1['title'])
-        print("Число: " + w1['date1'], ' ', w1['date2'])
-        print("Температура: :" + w1['temp'], " ||  " + w1['temp2'])
+        print("День:" + weatherToday['title'])
+        print("Число: " + weatherToday['date1'], ' ', weatherToday['date2'])
+        print("Температура: " + weatherToday['temp'], " ||  " + weatherToday['temp2'])
         print()
 
-        weather_day = []
-        for i in w2:
-            weather_day.append(w2[i])
+        weather_day_output = []
+        for i in weatherDayTime:
+            weather_day_output.append(weatherDayTime[i])
 
-        weather_day2 = []
-        for i in w3:
-            weather_day2.append(w3[i])
+        weather_day_output2 = []
+        for i in weatherDayNumbers:
+            weather_day_output2.append(weatherDayNumbers[i])
 
         print("Прогноз на день")
-        for i in weather_day:
+        for i in weather_day_output:
             print(i, end='     ')
-        for j in weather_day2:
+        for j in weather_day_output2:
             print(j, end='       ')
-            if j == weather_day2[4]:
+            if j == weather_day_output2[4]:
                 print(end='  ')
-            if j == weather_day2[5]:
+            if j == weather_day_output[5]:
                 print(end='   ')
