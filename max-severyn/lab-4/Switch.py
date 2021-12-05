@@ -1,12 +1,12 @@
 from MenuManagement import MenuManagement
 from Authentification import LoginPass
-from BankUser import BankUser
+from BankAccount import BankAccount
 
 
 class Switch():
     @staticmethod
     def input_number():
-        BankUser.exist = False
+        BankAccount.exist = False
         number = input("Type number:")
         if(number == "1"):
             MenuManagement.about_info()

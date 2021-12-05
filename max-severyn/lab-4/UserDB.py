@@ -1,17 +1,17 @@
-from BankUser import BankUser
+from BankAccount import BankAccount
 from FileManagement import *
 from MenuManagement import MenuManagement
-from User import User
+from AccountOperations import AccountOperations
 
 
-class UserDB(BankUser):
+class UserDB(BankAccount):
     def data_to_database():
         for obj in FileManagement.temp_dict_file:
-            if obj.name == User.variable.name and obj.password == User.variable.password and obj.login == User.variable.login:
+            if obj.name == AccountOperations.variable.name and obj.password == AccountOperations.variable.password and obj.login == AccountOperations.variable.login:
                 print("Item already exist")
-                BankUser.exist = True
-        if BankUser.exist == False:
-            FileManagement.temp_dict_file.append(User.variable)
+                BankAccount.exist = True
+        if BankAccount.exist == False:
+            FileManagement.temp_dict_file.append(AccountOperations.variable)
 
     def change_data_db(cls):
         for obj in FileManagement.temp_dict_file:
